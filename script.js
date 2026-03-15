@@ -1483,3 +1483,122 @@ window.addEventListener('click', (e) => {
         document.body.style.width = '';
     }
 });
+/* Исправления для мобильных устройств */
+@media (max-width: 768px) {
+    /* Убираем горизонтальный скролл, но сохраняем вертикальный */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    body {
+        overflow-y: auto;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Исправляем модальные окна */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2000;
+    }
+    
+    .modal-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border-radius: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0;
+    }
+    
+    /* Фиксируем прогресс-бар сверху */
+    .test-progress {
+        position: sticky;
+        top: 0;
+        background: var(--bg-color);
+        z-index: 100;
+        padding: 1rem;
+        border-bottom: 1px solid var(--card-bg);
+    }
+    
+    /* Контейнер с вопросами */
+    .question-container {
+        padding: 1rem;
+        padding-bottom: 120px; /* Место для кнопок */
+    }
+    
+    /* Фиксируем навигацию снизу */
+    .question-navigation {
+        position: fixed;
+        bottom: 70px;
+        left: 0;
+        right: 0;
+        background: var(--bg-color);
+        padding: 1rem;
+        z-index: 100;
+        border-top: 1px solid var(--card-bg);
+        display: flex;
+        gap: 1rem;
+    }
+    
+    /* Фиксируем индикатор ответов */
+    .answers-indicator {
+        position: fixed;
+        bottom: 130px;
+        left: 0;
+        right: 0;
+        background: var(--bg-color);
+        padding: 1rem;
+        z-index: 100;
+        border-top: 1px solid var(--card-bg);
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    /* Фиксируем кнопку отправки */
+    .submit-test {
+        position: fixed;
+        bottom: 20px;
+        left: 1rem;
+        right: 1rem;
+        width: auto;
+        z-index: 100;
+        margin: 0;
+    }
+    
+    /* Увеличиваем область нажатия */
+    .nav-btn, .answer-dot, .option-card {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .nav-btn {
+        flex: 1;
+    }
+    
+    /* Убираем выделение при тапе */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Плавный скролл */
+    .question-container {
+        scroll-behavior: smooth;
+    }
+    
+    /* Отступ для контента */
+    .question-card:last-child {
+        margin-bottom: 20px;
+    }
+}
