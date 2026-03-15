@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>MindWell | Психологическая помощь</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +18,7 @@
                 <i class="fas fa-brain"></i>
                 <span>MindWell</span>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#home">Главная</a></li>
                 <li><a href="#tests">Тесты</a></li>
                 <li><a href="#about">О нас</a></li>
@@ -75,21 +74,21 @@
                 <h2 id="modalTitle">Название теста</h2>
                 <button class="close-modal" id="closeModal">&times;</button>
             </div>
-            <div class="modal-body">
-                <div id="testContainer"></div>
+            <div class="modal-body" id="testContainer">
+                <!-- Тест будет загружен здесь -->
             </div>
         </div>
     </div>
 
-    <!-- Результаты теста -->
+    <!-- Модальное окно результатов -->
     <div class="modal" id="resultModal">
-        <div class="modal-content result-modal">
+        <div class="modal-content">
             <div class="modal-header">
                 <h2>Ваш результат</h2>
                 <button class="close-modal" id="closeResultModal">&times;</button>
             </div>
-            <div class="modal-body">
-                <div id="resultContainer"></div>
+            <div class="modal-body" id="resultContainer">
+                <!-- Результаты будут загружены здесь -->
             </div>
         </div>
     </div>
