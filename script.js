@@ -1441,3 +1441,45 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initModals();
 });
+// Добавьте это в функцию openTest после modal.style.display = 'block';
+window.openTest = function(testId) {
+    currentTest = testsData.find(t => t.id === testId);
+    userAnswers = new Array(currentTest.questions.length).fill(null);
+    currentQuestionIndex = 0;
+    
+    document.getElementById('modalTitle').textContent = currentTest.title;
+    
+    const modal = document.getElementById('testModal');
+    modal.querySelector('.modal-content').classList.add('test-modal');
+    
+    renderTest();
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Добавьте эти строки:
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    
+    if (modal) modal.scrollTop = 0;
+}
+
+// Обновите функцию закрытия модальных окон
+closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        modals.forEach(modal => {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+        });
+    });
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal')) {
+        e.target.style.display = 'none';
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+    }
+});
