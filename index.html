@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWell | Психологическая помощь</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span>MindWell</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#tests">Тесты</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Главный экран -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="animate-text">Пойми себя <br>и найди <span class="gradient-text">гармонию</span></h1>
+            <p class="animate-text-delay">Пройдите специализированные тесты, чтобы лучше понять свои эмоции и найти пути решения психологических проблем</p>
+            <button class="cta-button" onclick="document.getElementById('tests').scrollIntoView({behavior: 'smooth'})">
+                Начать тестирование <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+        <div class="hero-image">
+            <div class="floating-shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Карточки тестов -->
+    <section class="tests-section" id="tests">
+        <div class="container">
+            <div class="section-header">
+                <h2>Выберите тест</h2>
+                <p>Каждый тест поможет вам лучше понять определенную сферу вашей жизни</p>
+            </div>
+            
+            <div class="tests-grid" id="testsGrid">
+                <!-- Тесты будут загружены через JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно теста -->
+    <div class="modal" id="testModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Название теста</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="testContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Результаты теста -->
+    <div class="modal" id="resultModal">
+        <div class="modal-content result-modal">
+            <div class="modal-header">
+                <h2>Ваш результат</h2>
+                <button class="close-modal" id="closeResultModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="resultContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- О нас -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>О нашем подходе</h2>
+                    <p>Мы создали платформу, которая помогает людям лучше понять себя через научно обоснованные психологические тесты. Наша миссия — сделать психологическую помощь доступной каждому.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Научный подход</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Анонимность</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Практические рекомендации</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <h3>10+</h3>
+                        <p>Профессиональных тестов</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>5000+</h3>
+                        <p>Довольных пользователей</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>24/7</h3>
+                        <p>Доступ к тестам</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Нужна поддержка?</h2>
+                <p>Если вам трудно справиться с эмоциями, обратитесь к специалисту</p>
+                <div class="contact-buttons">
+                    <a href="tel:+78001234567" class="contact-button">
+                        <i class="fas fa-phone"></i>
+                        <span>8 (800) 123-45-67</span>
+                    </a>
+                    <a href="mailto:support@mindwell.ru" class="contact-button">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@mindwell.ru</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>MindWell</span>
+                </div>
+                <p class="footer-text">© 2024 MindWell. Все права защищены.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
