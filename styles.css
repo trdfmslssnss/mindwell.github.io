@@ -35,7 +35,6 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     width: 100%;
-    position: relative;
 }
 
 /* Навигация */
@@ -284,6 +283,7 @@ body {
 .test-card p {
     color: #6B7280;
     margin-bottom: 1.5rem;
+    line-height: 1.5;
 }
 
 .test-meta {
@@ -487,6 +487,7 @@ body {
     background: linear-gradient(135deg, 
         rgba(139, 92, 246, 0.1) 0%, 
         rgba(236, 72, 153, 0.1) 100%);
+    transform: scale(1.02);
 }
 
 .option-marker {
@@ -626,6 +627,12 @@ body {
 .result-icon {
     font-size: 5rem;
     margin-bottom: 1rem;
+    animation: bounce 1s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
 }
 
 .result-title {
@@ -642,6 +649,9 @@ body {
     margin-bottom: 2rem;
     font-size: 1.1rem;
     line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .recommendations {
@@ -658,6 +668,9 @@ body {
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
     color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .recommendations ul {
@@ -702,6 +715,7 @@ body {
     color: #6B7280;
     margin-bottom: 2rem;
     font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 .features {
@@ -718,6 +732,7 @@ body {
 
 .feature i {
     color: var(--primary-color);
+    font-size: 1.2rem;
 }
 
 .about-stats {
@@ -737,6 +752,11 @@ body {
     font-size: 2rem;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    color: #6B7280;
+    font-size: 0.95rem;
 }
 
 /* Контакты */
@@ -759,6 +779,7 @@ body {
 .contact-content p {
     color: #6B7280;
     margin-bottom: 2rem;
+    font-size: 1.1rem;
 }
 
 .contact-buttons {
@@ -777,15 +798,18 @@ body {
     color: var(--text-color);
     text-decoration: none;
     border-radius: 12px;
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-weight: 500;
 }
 
 .contact-button:hover {
     transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
 .contact-button i {
     color: var(--primary-color);
+    font-size: 1.2rem;
 }
 
 /* Footer */
@@ -812,6 +836,11 @@ body {
 
 .footer-logo i {
     color: var(--primary-color);
+}
+
+.footer-text {
+    color: #6B7280;
+    font-size: 0.95rem;
 }
 
 .social-links {
@@ -857,7 +886,7 @@ body {
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 5rem 1rem 3rem;
+        padding: 6rem 1rem 3rem;
         min-height: auto;
     }
 
@@ -873,6 +902,7 @@ body {
 
     .floating-shapes {
         height: 200px;
+        margin-top: 2rem;
     }
 
     .shape:nth-child(1) {
@@ -898,6 +928,10 @@ body {
         font-size: 1.8rem;
     }
 
+    .section-header p {
+        font-size: 1rem;
+    }
+
     .tests-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -905,6 +939,10 @@ body {
 
     .test-card {
         padding: 1.5rem;
+    }
+
+    .about-section {
+        padding: 3rem 1rem;
     }
 
     .about-content {
@@ -916,9 +954,21 @@ body {
         font-size: 1.8rem;
     }
 
+    .about-text p {
+        font-size: 1rem;
+    }
+
     .about-stats {
         grid-template-columns: 1fr;
         gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    .stat-card h3 {
+        font-size: 1.8rem;
     }
 
     .contact-section {
@@ -943,6 +993,7 @@ body {
         text-align: center;
     }
 
+    /* Модальные окна на мобильных */
     .modal-content {
         margin: 0;
         width: 100%;
@@ -960,16 +1011,21 @@ body {
         font-size: 1.3rem;
     }
 
-    .options-grid {
-        grid-template-columns: 1fr;
-    }
-
     .question-card {
         padding: 1rem;
     }
 
     .question-text {
         font-size: 1rem;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .option-content {
+        padding: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .answer-dot {
@@ -984,9 +1040,31 @@ body {
     .nav-btn {
         width: 100%;
     }
+
+    .submit-test {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .result-title {
+        font-size: 1.5rem;
+    }
+
+    .result-description {
+        font-size: 1rem;
+    }
+
+    .recommendations {
+        padding: 1.5rem;
+    }
+
+    .recommendations li {
+        font-size: 0.95rem;
+    }
 }
 
-@media (max-width: 480px) {
+/* Для очень маленьких экранов */
+@media (max-width: 380px) {
     .hero h1 {
         font-size: 1.8rem;
     }
@@ -995,15 +1073,18 @@ body {
         font-size: 1.3rem;
     }
 
-    .stat-card {
-        padding: 1.5rem;
+    .test-card p {
+        font-size: 0.9rem;
     }
 
-    .stat-card h3 {
-        font-size: 1.5rem;
+    .answer-dot {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
     }
 }
 
+/* Анимации */
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -1016,5 +1097,24 @@ body {
     100% {
         transform: scale(1);
         box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    }
+}
+
+.animate-text {
+    animation: fadeInUp 1s ease;
+}
+
+.animate-text-delay {
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
