@@ -1602,3 +1602,167 @@ window.addEventListener('click', (e) => {
         margin-bottom: 20px;
     }
 }
+// Открытие теста - ИСПРАВЛЕНО
+window.openTest = function(testId) {
+    currentTest = testsData.find(t => t.id === testId);
+    userAnswers = new Array(currentTest.questions.length).fill(null);
+    currentQuestionIndex = 0;
+    
+    document.getElementById('modalTitle').textContent = currentTest.title;
+    
+    const modal = document.getElementById('testModal');
+    modal.querySelector('.modal-content').classList.add('test-modal');
+    
+    renderTest();
+    modal.style.display = 'block';
+    
+    // НЕ БЛОКИРУЕМ СКРОЛЛ body, только на модальном окне
+    document.body.style.overflow = 'hidden';
+    
+    if (modal) {
+        const modalContent = modal.querySelector('.modal-content');
+        modalContent.scrollTop = 0;
+    }
+}
+
+// Обновленная функция закрытия модальных окон
+function initModals() {
+    const modals = document.querySelectorAll('.modal');
+    const closeButtons = document.querySelectorAll('.close-modal');
+    
+    closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+                // Возвращаем скролл body
+                document.body.style.overflow = '';
+            });
+        });
+    });
+    
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) {
+            e.target.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// Сохранение ответа (убираем блокировку скролла)
+window.saveAnswer = function(questionIndex, value) {
+    userAnswers[questionIndex] = value;
+    
+    // Визуальная обратная связь
+    const selectedOption = document.querySelector(`input[name="q${questionIndex}"][value="${value}"]`);
+    if (selectedOption) {
+        const optionCard = selectedOption.closest('.option-card');
+        if (optionCard) {
+            optionCard.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                optionCard.style.transform = '';
+            }, 100);
+        }
+    }
+    
+    // Обновляем UI
+    updateUIState();
+    
+    // Задержка перед переходом
+    const NAVIGATION_DELAY = 1000;
+    
+    // Автоматически переходим к следующему вопросу
+    if (questionIndex === currentQuestionIndex && 
+        currentQuestionIndex < currentTest.questions.length - 1) {
+        
+        // Подсвечиваем кнопку следующего вопроса
+        const nextBtn = document.getElementById('next-btn');
+        if (nextBtn) {
+            nextBtn.style.background = 'var(--gradient)';
+            nextBtn.style.color = 'white';
+            nextBtn.style.animation = 'pulse 1s infinite';
+        }
+        
+        setTimeout(() => {
+            // Плавный переход к следующему вопросу
+            currentQuestionIndex++;
+            
+            // Обновляем UI
+            updateUIState();
+            
+            // Плавный скролл к следующему вопросу
+            const nextCard = document.getElementById(`question-${currentQuestionIndex}`);
+            if (nextCard) {
+                const container = document.querySelector('.question-container');
+                if (container) {
+                    container.scrollTo({
+                        top: nextCard.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            
+            // Убираем подсветку кнопки
+            if (nextBtn) {
+                nextBtn.style.background = '';
+                nextBtn.style.color = '';
+                nextBtn.style.animation = '';
+            }
+        }, NAVIGATION_DELAY);
+    }
+}
+
+// Навигация между вопросами
+window.navigateQuestion = function(direction) {
+    const totalQuestions = currentTest.questions.length;
+    
+    if (direction === 'prev' && currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+    } else if (direction === 'next' && currentQuestionIndex < totalQuestions - 1) {
+        currentQuestionIndex++;
+    }
+    
+    // Обновляем UI
+    updateUIState();
+    
+    // Плавный скролл к текущему вопросу
+    const currentCard = document.getElementById(`question-${currentQuestionIndex}`);
+    if (currentCard) {
+        const container = document.querySelector('.question-container');
+        if (container) {
+            container.scrollTo({
+                top: currentCard.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+    }
+}
+
+// Прыжок к вопросу
+window.jumpToQuestion = function(index) {
+    if (index >= 0 && index < currentTest.questions.length) {
+        currentQuestionIndex = index;
+        
+        // Обновляем UI
+        updateUIState();
+        
+        // Плавный скролл
+        const targetCard = document.getElementById(`question-${currentQuestionIndex}`);
+        if (targetCard) {
+            const container = document.querySelector('.question-container');
+            if (container) {
+                container.scrollTo({
+                    top: targetCard.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }
+}
+
+// Убираем блокирующий скрипт из HTML
+// Вместо этого добавляем только запрет на зум
+document.addEventListener('touchmove', function(e) {
+    if (e.touches.length > 1) {
+        e.preventDefault();
+    }
+}, { passive: false });
